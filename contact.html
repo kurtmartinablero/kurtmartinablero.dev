@@ -3,36 +3,94 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Kurt</title>
+    <!-- Make sure style.css is in the same folder! -->
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;700;900&display=swap" rel="stylesheet">
 </head>
-<header class="navbar">
-    <a href="index.html" class="logo">Kurt.dev</a>
-    <nav>
-        <a href="index.html">HOME</a>
-    </nav>
-</header>
 
 <body>
 
-    <section class="contact">
-        <h2>Contact Me</h2>
+    <header>
+        <div class="logo">Kurt<span>.dev</span></div>
+        <nav>
+            <a href="index.html">HOME</a>
+        </nav>
+    </header>
 
-        <form action="https://formspree.io/f/mlgnjlqq" method="POST">
+    <main class="contact-container">
+        <h1>Contact Me</h1>
 
-            <input type="text" name="name" placeholder="Your Name" required>
-            <input type="email" name="email" placeholder="Your Email" required>
-            <textarea name="message" placeholder="Your Message" required></textarea>
-            <button type="submit" class="btn primary">Send Message</button>
+        <!-- The form MUST be here for the script to find it -->
+        <form class="contact-form">
+            <div class="input-group">
+                <input type="text" placeholder="Your Name" required>
+            </div>
+            <div class="input-group">
+                <input type="email" placeholder="Your Email" required>
+            </div>
+            <div class="input-group">
+                <textarea placeholder="Your Message" rows="6" required></textarea>
+            </div>
 
+            <button type="submit" class="btn-send">Send Message</button>
         </form>
-        
-        <div style="margin-top: 20px;">
-            <a href="https://www.facebook.com/scipity21"><img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook logo linking to Kurt's Facebook profile" style="width: 24px; height: 24px;"></a>
+
+        <div class="social-links">
+            <a href="#" class="fb-icon">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/2021_Facebook_icon.svg" alt="Facebook"
+                    width="35">
+            </a>
         </div>
+    </main>
 
-    </section>
+    <!-- FIREBASE SCRIPT SECTION -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
+        const firebaseConfig = {
+            apiKey: "AIzaSyDeQOtv5Qjf6BdUMGd3roh8dshUHL2Jx9o",
+            authDomain: "kurtmartinablero21portfolio.firebaseapp.com",
+            projectId: "kurtmartinablero21portfolio",
+            storageBucket: "kurtmartinablero21portfolio.firebasestorage.app",
+            messagingSenderId: "56389986097",
+            appId: "1:56389986097:web:f68464af6ba5fa84e6b210",
+            measurementId: "G-JNDRPYY9CM"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // This waits for the page to load so it can find the form
+        const contactForm = document.querySelector('.contact-form');
+
+        if (contactForm) {
+            contactForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+
+                const name = contactForm.querySelector('input[type="text"]').value;
+                const email = contactForm.querySelector('input[type="email"]').value;
+                const message = contactForm.querySelector('textarea').value;
+
+                try {
+                    await addDoc(collection(db, "messages"), {
+                        senderName: name,
+                        senderEmail: email,
+                        text: message,
+                        timestamp: new Date()
+                    });
+
+                    alert("Message sent successfully! Thanks, Kurt.");
+                    contactForm.reset();
+                } catch (error) {
+                    console.error("Error: ", error);
+                    alert("Failed to send message. Check your Firestore rules!");
+                }
+            });
+        }
+    </script>
 </body>
 
 </html>
