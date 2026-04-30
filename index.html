@@ -49,58 +49,92 @@
                 organization, and real-world application.</p>
         </div>
     </section>
-</section>
-        <div id="skills" style="position: relative; top: -100px;"></div>
-<section class="skills-card">
-   <h3>SOFT SKILL</h3>
-            <div class="skills-grid">
-                <div class="skill">
-                    <img src="net.jpg" alt=".NET">
-                    <span>.NET</span>
-                </div>
-                <div class="skill">
-                    <img src="canva.jpg" alt="Canva">
-                    <span>CANVA</span>
-                </div>
-                <div class="skill">
-                    <img src="sql.jpg" alt="SQL">
-                    <span>SQL</span>
-                </div>
-                <div class="skill">
-                    <img src="UiUx.jpg" alt="UI/UX">
-                    <span>UI/UX</span>
-                </div>
-                <div class="skill">
-                    <img src="Ps.jpg" alt="Photoshop">
-                    <span>PHOTOSHOP</span>
-                </div>
-                <div class="skill">
-                    <img src="excel.jpg" alt="Excel">
-                    <span>EXCEL</span>
-                </div>
+
+    <div id="skills" style="position: relative; top: -100px;"></div>
+    <section class="skills-card">
+        <h3>SOFT SKILL</h3>
+        <div class="skills-grid">
+            <div class="skill">
+                <img src="net.jpg" alt=".NET">
+                <span>.NET</span>
+            </div>
+            <div class="skill">
+                <img src="canva.jpg" alt="Canva">
+                <span>CANVA</span>
+            </div>
+            <div class="skill">
+                <img src="sql.jpg" alt="SQL">
+                <span>SQL</span>
+            </div>
+            <div class="skill">
+                <img src="UiUx.jpg" alt="UI/UX">
+                <span>UI/UX</span>
+            </div>
+            <div class="skill">
+                <img src="Ps.jpg" alt="Photoshop">
+                <span>PHOTOSHOP</span>
+            </div>
+            <div class="skill">
+                <img src="excel.jpg" alt="Excel">
+                <span>EXCEL</span>
             </div>
         </div>
+    </section>
 
-        <section id="projects" class="projects">
-            <h2>PROJECTS</h2>
-            <div class="project-grid">
-                <div class="project-card">
-                    <img src="project1.jpg" alt="PESO Iloilo">
-                    <h4>PESO Iloilo</h4>
-                    <p>LANDING PAGE</p>
-                </div>
-                <div class="project-card">
-                    <img src="project2.jpg" alt="BVC">
-                    <h4>BVC</h4>
-                    <p>BALABAG PAVIA VOLLEYBALL CLUB WEBSITE</p>
-                </div>
-                <div class="project-card">
-                    <img src="project3.jpg" alt="Pickleball">
-                    <h4>PUBMAT DESIGNS</h4>
-                    <p>BALABAG VOLLEYBALL BOYS</p>
-                </div>
+    <section id="projects" class="projects">
+        <h2>PROJECTS</h2>
+        <div class="project-grid">
+            <div class="project-card">
+                <img src="peso.png" alt="PESO Iloilo">
+                <h4>PESO Iloilo</h4>
+                <p>A professional landing page designed for the Public Employment Service Office, streamlining job
+                    seeker access in Iloilo City.</p>
             </div>
-        </section>
+
+            <div class="project-card">
+                <img src="BVC.png" alt="BVC">
+                <h4>BVC Website</h4>
+                <p>Official website for the Balabag Pavia Volleyball Club, featuring team rosters, upcoming schedules,
+                    and event registration.</p>
+            </div>
+
+            <div class="project-card">
+                <img src="pubmat.png" alt="PUBMAT DESIGNS">
+                <h4>PUBMAT Designs</h4>
+                <p>Custom social media publication materials and sports graphics for the Balabag Volleyball Boys 2026
+                    season.</p>
+            </div>
+        </div>
+    </section>
+
+    <div id="fullImageModal" class="modal-overlay">
+        <span class="close-btn">&times;</span>
+        <img id="fullImageContent" src="" alt="Full View">
+    </div>
+
+    <!-- Image inlarger script -->
+    <script>
+        const modal = document.getElementById("fullImageModal");
+        const fullImg = document.getElementById("fullImageContent");
+        const closeBtn = document.querySelector(".close-btn");
+
+        document.querySelectorAll('.project-card img').forEach(image => {
+            image.addEventListener('click', () => {
+                modal.style.display = "flex"; 
+                fullImg.src = image.src;      
+            });
+        });
+
+        closeBtn.onclick = () => {
+            modal.style.display = "none";
+        };
+
+        modal.onclick = (e) => {
+            if (e.target === modal) {
+                modal.style.display = "none";
+            }
+        };
+    </script>
 
 </body>
 
