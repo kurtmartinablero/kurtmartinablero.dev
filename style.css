@@ -445,3 +445,31 @@ html {
     font-size: 60px;
     cursor: pointer;
 }
+
+header {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    padding: 20px 10%;
+    background-color: #000; 
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+nav {
+    display: flex;
+    gap: 30px; 
+}
+
+nav a {
+    text-decoration: none;
+    color: white;
+    font-weight: 700;
+    font-size: 0.9rem;
+    transition: color 0.3s;
+}
+
+nav a:hover {
+    color: #ff4d00;
+}
