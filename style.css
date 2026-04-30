@@ -182,3 +182,32 @@ nav a:hover { color: var(--accent-orange); }
     font-weight: 800;
     color: #333;
 }
+html {
+    scroll-behavior: smooth;
+    /* This adds space at the top so the header doesn't cover your title */
+    scroll-padding-top: 100px; 
+}
+
+.skills-card {
+    background: white;
+    color: black;
+    padding: 4rem 2rem;
+    border-radius: 40px;
+    margin-top: 4rem;
+    text-align: center; /* This centers the heading and the grid */
+}
+
+.skills-card h3 {
+    color: var(--accent-orange);
+    font-size: 2.5rem;
+    font-weight: 900;
+    margin-bottom: 3rem;
+    text-transform: uppercase;
+}
+
+.skills-grid {
+    display: flex;
+    justify-content: center; /* Keeps the icons in the middle */
+    flex-wrap: wrap;
+    gap: 30px;
+}
